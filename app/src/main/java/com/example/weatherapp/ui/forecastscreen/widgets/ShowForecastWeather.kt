@@ -21,28 +21,21 @@ import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.lifecycle.ViewModel
 import coil.compose.AsyncImage
 import com.example.weatherapp.common.extensions.toDate
 import com.example.weatherapp.common.extensions.toDay
+import com.example.weatherapp.ui.forecastscreen.ForecastScreenViewModel
 import com.example.weatherapp.ui.models.ForecastScreenUIModel
 import com.example.weatherapp.ui.models.ForecastUIModel
 
 @Composable
-fun ShowForecastWeather(modifier: Modifier, forecastList: ForecastScreenUIModel) {
+fun ShowForecastWeather(modifier: Modifier, forecastList: ForecastScreenUIModel, viewModel: ForecastScreenViewModel) {
     LazyColumn(
         modifier.background(Color.LightGray),
     ) {
         items(forecastList.forecast) { forecast ->
-            val filteredForecast = forecastList.forecast.filter {
-                it.date.toDay() == forecast.date.toDay()
-            }
-            val icon = filteredForecast.groupingBy { it.weatherIcon }.eachCount().maxByOrNull {
-                it.value
-            }?.key
-            val weatherName =
-                filteredForecast.groupingBy { it.weatherName }.eachCount().maxByOrNull {
-                    it.value
-                }?.key
+            val (icon, weatherName) = viewModel.forecastFilter(forecastList, forecast)
             BuildForecast(forecast, icon.orEmpty(), weatherName.orEmpty())
             Spacer(modifier = Modifier.height(8.dp))
         }

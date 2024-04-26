@@ -2,9 +2,11 @@ package com.example.weatherapp.ui.forecastscreen
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.example.weatherapp.common.extensions.toDay
 import com.example.weatherapp.domain.usecases.FetchForecastWeatherUseCase
 import com.example.weatherapp.ui.mappers.ForecastScreenUIMapper
-import com.example.weatherapp.ui.state.CurrentWeatherState
+import com.example.weatherapp.ui.models.ForecastScreenUIModel
+import com.example.weatherapp.ui.models.ForecastUIModel
 import com.example.weatherapp.ui.state.ForecastWeatherState
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
@@ -39,4 +41,21 @@ class ForecastScreenViewModel @Inject constructor(
 
     fun refresh(){
         _forecastScreenState.value = ForecastWeatherState.ShowLoading(true)    }
+
+    fun forecastFilter(
+        forecastList: ForecastScreenUIModel,
+        forecast: ForecastUIModel
+    ): Pair<String?, String?> {
+        val filteredForecast = forecastList.forecast.filter {
+            it.date.toDay() == forecast.date.toDay()
+        }
+        val icon = filteredForecast.groupingBy { it.weatherIcon }.eachCount().maxByOrNull {
+            it.value
+        }?.key
+        val weatherName =
+            filteredForecast.groupingBy { it.weatherName }.eachCount().maxByOrNull {
+                it.value
+            }?.key
+        return Pair(icon, weatherName)
+    }
 }
