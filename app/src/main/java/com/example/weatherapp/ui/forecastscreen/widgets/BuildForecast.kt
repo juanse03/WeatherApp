@@ -22,7 +22,7 @@ import com.example.weatherapp.common.extensions.toDate
 import com.example.weatherapp.ui.models.ForecastUIModel
 
 @Composable
-fun BuildForecast(forecast: ForecastUIModel, icon: String, weatherName: String) {
+fun BuildForecast(forecast: ForecastUIModel) {
     Column(
         modifier = Modifier
             .background(Color(0, 141, 117))
@@ -78,13 +78,13 @@ fun BuildForecast(forecast: ForecastUIModel, icon: String, weatherName: String) 
                 horizontalAlignment = Alignment.End
             ) {
                 AsyncImage(
-                    model = "https://openweathermap.org/img/wn/${icon}@2x.png",
+                    model = "https://openweathermap.org/img/wn/${forecast.weatherIcon}@2x.png",
                     contentDescription = null,
                     modifier = Modifier.size(48.dp),
                     contentScale = ContentScale.FillWidth
                 )
                 Text(
-                    text = weatherName,
+                    text = forecast.weatherName,
                     style = TextStyle(fontSize = 16.sp)
                 )
             }

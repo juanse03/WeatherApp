@@ -1,7 +1,5 @@
 package com.example.weatherapp.ui.state
 
-import com.example.weatherapp.domain.entities.CurrentWeatherEntity
-import com.example.weatherapp.domain.entities.ForecastWeatherEntity
 import com.example.weatherapp.ui.models.LandingScreenUIModel
 
 sealed class CurrentWeatherState {

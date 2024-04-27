@@ -1,6 +1,6 @@
 package com.example.weatherapp.domain.repository
 
-import com.example.weatherapp.domain.entities.ForecastWeatherEntity
+import com.example.weatherapp.domain.entities.ForecastEntity
 import kotlinx.coroutines.flow.Flow
 
 interface ForecastWeatherRepository {
@@ -8,5 +8,5 @@ interface ForecastWeatherRepository {
         latitude: Double,
         longitude: Double,
         count: String
-    ): Flow<ForecastWeatherEntity>
+    ): Flow<List<ForecastEntity>>
 }

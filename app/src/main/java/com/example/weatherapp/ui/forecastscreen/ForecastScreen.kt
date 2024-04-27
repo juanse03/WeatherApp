@@ -54,8 +54,7 @@ fun ForecastScreen(
             refreshing.value = false
             ShowForecastWeather(
                 Modifier.pullRefresh(pullRefreshState),
-                (forecastState.value as ForecastWeatherState.ShowForecastWeather).forecastWeather,
-                viewModel
+                (forecastState.value as ForecastWeatherState.ShowForecastWeather).forecastWeather
             )
         }
 

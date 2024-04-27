@@ -3,7 +3,6 @@ package com.example.weatherapp.domain.usecases
 import com.example.weatherapp.data.models.forecast.Forecast
 import com.example.weatherapp.data.models.forecast.ForecastTemperature
 import com.example.weatherapp.data.models.forecast.ForecastWeatherApiResponse
-import com.example.weatherapp.domain.entities.ForecastWeatherEntity
 import com.example.weatherapp.domain.repository.ForecastWeatherRepository
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow

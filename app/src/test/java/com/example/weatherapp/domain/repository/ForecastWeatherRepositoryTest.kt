@@ -7,7 +7,6 @@ import com.example.weatherapp.data.models.forecast.ForecastTemperature
 import com.example.weatherapp.data.models.forecast.ForecastWeatherApiResponse
 import com.example.weatherapp.data.models.forecast.Weather
 import com.example.weatherapp.data.models.forecast.Wind
-import com.example.weatherapp.domain.entities.ForecastWeatherEntity
 import kotlinx.coroutines.runBlocking
 import org.junit.Before
 import org.junit.Test

@@ -1,12 +1,11 @@
 package com.example.weatherapp.ui.state
 
-import com.example.weatherapp.domain.entities.ForecastWeatherEntity
-import com.example.weatherapp.ui.models.ForecastScreenUIModel
+import com.example.weatherapp.ui.models.ForecastUIModel
 
 sealed class ForecastWeatherState {
     class ShowLoading(val isLoading: Boolean) : ForecastWeatherState()
 
-    class ShowForecastWeather(val forecastWeather: ForecastScreenUIModel) :
+    class ShowForecastWeather(val forecastWeather: List<ForecastUIModel>) :
         ForecastWeatherState()
 
     class ShowError(val error: String) : ForecastWeatherState()
