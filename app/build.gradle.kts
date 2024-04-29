@@ -91,4 +91,6 @@ dependencies {
     //Mockito
     testImplementation("org.mockito:mockito-core:4.6.1")
     testImplementation("org.mockito.kotlin:mockito-kotlin:4.0.0")
+    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-test-jvm:1.7.3")
+
 }

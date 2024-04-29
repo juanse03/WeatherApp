@@ -7,6 +7,7 @@ import com.example.weatherapp.data.models.forecast.ForecastTemperature
 import com.example.weatherapp.data.models.forecast.ForecastWeatherApiResponse
 import com.example.weatherapp.data.models.forecast.Weather
 import com.example.weatherapp.data.models.forecast.Wind
+import com.example.weatherapp.domain.entities.ForecastEntity
 import kotlinx.coroutines.runBlocking
 import org.junit.Before
 import org.junit.Test
@@ -48,9 +49,13 @@ class ForecastWeatherRepositoryTest {
     fun getForecastWeather(): Unit = runBlocking {
         sut.getForecastWeather(2.0, 40.0, "40").runCatching {
             this.collect {
-                assert(it == ForecastWeatherEntity(response))
+                val entityList = response.forecastList.map { forecast ->
+                    ForecastEntity(forecast)
+                }
+                assert(it == entityList)
             }
         }
+
         verify(api).getForecastWeather(2.0, 40.0, cnt = "40")
     }
 }
